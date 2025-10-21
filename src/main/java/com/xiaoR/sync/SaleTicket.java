@@ -10,7 +10,7 @@ package com.xiaoR.sync;
 // 1. 创建资源类，定义属性和操作方法
 class Ticket {
     private int number = 30;
-    public synchronized void sale() {
+    public synchronized void sale() {       // 上锁和解锁过程由synchronized自动完成
         if (number > 0) {
             System.out.println(Thread.currentThread().getName() + ": 卖出第" + (number--) + "张票，剩余：" + number);
         }
