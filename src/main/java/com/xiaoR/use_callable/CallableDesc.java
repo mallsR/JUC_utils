@@ -36,7 +36,8 @@ public class CallableDesc {
         // new Thread(new CallableThread(), "thread-c1").start();  // 无法直接从Callable创建线程
 
         /**
-         * 通过FutureTask类实现Callable接口, 用于实例化线程
+         * 通过FutureTask类接收Callable对象, 用于实例化线程
+         * FutureTask类实现了Runnable接口, 但其内部包含一个Callable对象, 创建线程时, 会调用Callable对象中的call()方法
          * FutureTask的特点:
          *    1. 先完成容易做的任务
          *    2. 只需要计算一次, 后续调用,直接返回结果
