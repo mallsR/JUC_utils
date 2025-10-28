@@ -18,12 +18,22 @@ public class UseThreadPool {
         /**
          * 一池多线程 [线程数量固定]
          */
-        ExecutorService fixedBankThreadPool = Executors.newFixedThreadPool(5);
+//        ExecutorService bankThreadPool = Executors.newFixedThreadPool(5);
+
+        /**
+         * 一池N个线程
+         */
+//        ExecutorService bankThreadPool = Executors.newSingleThreadExecutor();
+
+        /**
+         * 一池N个线程 [线程数量不固定]
+         */
+        ExecutorService bankThreadPool = Executors.newCachedThreadPool();
 
         // 10个顾客
         try {
             for (int i = 1; i <= 10; i++) {
-                fixedBankThreadPool.execute(() -> { // execute()方法接收的是一个Runnable接口
+                bankThreadPool.execute(() -> { // execute()方法接收的是一个Runnable接口
                     log.debug("{} 为顾客办理业务", Thread.currentThread().getName());
                 });
             }
@@ -31,7 +41,7 @@ public class UseThreadPool {
             e.printStackTrace();
         } finally {
             // 关闭: 将线程归还到线程池
-            fixedBankThreadPool.shutdown();
+            bankThreadPool.shutdown();
         }
     }
 }
